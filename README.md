@@ -16,55 +16,55 @@
    <img src='https://gitee.com/dgflash/oops-framework/badge/star.svg?theme=dark' alt='star' height="22" />
 </div>
 
-## 概览
+## Overview
 
-oops Framework 是一款基于 Cocos Creator 3.x 开发的游戏框架。自 2021 年 7 月开源起，它始终与 Cocos Creator 3.x 的各个版本保持同步更新。与此同时，该框架也在持续迭代版本，不断提升稳定性与易用性。
+oops Framework is a game framework based on Cocos Creator 3.x. Since its open-source release in July 2021, it has consistently kept pace with every version of Cocos Creator 3.x. Meanwhile, the framework continues to iterate and improve its stability and usability.
 
-## 设计理念
+## Design Philosophy
 
-oops Framework 致力于提供一个拥有游戏开发常用技术的框架，从而提高开发效率、降低开发门槛、专注于内容设计、促进技术共享和交流。
+oops Framework is dedicated to providing a framework with commonly used game development technologies, thereby improving development efficiency, lowering the barrier to entry, allowing developers to focus on content design, and promoting technology sharing and collaboration.
 
-## 框架特点
+## Features
 
-- 提供较为全面的游戏开发常用技术
-- 提供可提高开发效率的<a href="https://gitee.com/dgflash/oops-framework/wikis/pages?sort_id=17097283&doc_id=2873565" target="_blank">插件工具</a>
-- 提供教学项目以及不同类型的解决方案项目
-- 拥有稳定可靠的框架技术
-- 对新人极为友好，操作简单且易于上手
+- Provides comprehensive commonly used game development technologies
+- Provides <a href="https://gitee.com/dgflash/oops-framework/wikis/pages?sort_id=17097283&doc_id=2873565" target="_blank">plugin tools</a> that improve development efficiency
+- Provides tutorial projects and solution projects of various types
+- Stable and reliable framework technology
+- Extremely beginner-friendly, simple to operate and easy to get started
 
 
-## 官方推荐
+## Official Recommendations
 
-- <a href="https://mp.weixin.qq.com/s/FfkKn1jLxfDCd6sMaDAT-A" target="_blank">Cocos 官方推荐框架</a>
-- <a href="https://mp.weixin.qq.com/s/WTLBMjv0uoA4XPneLcjC-w" target="_blank">Cocos 官方2022年TOP10的插件工具</a>
-- <a href="https://mp.weixin.qq.com/s/MzP-6P6uiddm3ckrISvmkg" target="_blank">Cocos Creator 3.x 优秀开源框架</a>
-- <a href="https://www.bilibili.com/video/BV1B9pFejEko/?vd_source=2ecab277f9fb79c5e11c909bf0affd34" target="_blank">Cocos Creator 3.x 优秀开源框架盘点</a>
+- <a href="https://mp.weixin.qq.com/s/FfkKn1jLxfDCd6sMaDAT-A" target="_blank">Cocos Officially Recommended Framework</a>
+- <a href="https://mp.weixin.qq.com/s/WTLBMjv0uoA4XPneLcjC-w" target="_blank">Cocos Official Top 10 Plugins of 2022</a>
+- <a href="https://mp.weixin.qq.com/s/MzP-6P6uiddm3ckrISvmkg" target="_blank">Cocos Creator 3.x Outstanding Open-Source Frameworks</a>
+- <a href="https://www.bilibili.com/video/BV1B9pFejEko/?vd_source=2ecab277f9fb79c5e11c909bf0affd34" target="_blank">Cocos Creator 3.x Outstanding Open-Source Framework Roundup</a>
 
-## [框架产品案例](https://gitee.com/dgflash/oops-framework/wikis/%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B)
+## [Framework Showcase](https://gitee.com/dgflash/oops-framework/wikis/%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B)
 
-## <a href="https://gitee.com/dgflash/oops-framework/wikis/pages?sort_id=12101082&doc_id=2873565" target="_blank">框架更新日志</a>
+## <a href="https://gitee.com/dgflash/oops-framework/wikis/pages?sort_id=12101082&doc_id=2873565" target="_blank">Changelog</a>
 
-## 学习资源
+## Learning Resources
 
-Oops Framework 文档： [WIKI](https://gitee.com/dgflash/oops-framework/wikis/pages?sort_id=12002375&doc_id=2873565)
+Oops Framework Documentation: [WIKI](https://gitee.com/dgflash/oops-framework/wikis/pages?sort_id=12002375&doc_id=2873565)
 
-Oops Framework API 文档： [API](https://oops-1255342636.cos.ap-shanghai.myqcloud.com/doc/oops-framework/index.html)
+Oops Framework API Documentation: [API](https://oops-1255342636.cos.ap-shanghai.myqcloud.com/doc/oops-framework/index.html)
 
-bili视频教程：[dgflash](https://space.bilibili.com/479459079?spm_id_from=333.788.upinfo.detail.click)
+Bilibili Video Tutorials: [dgflash](https://space.bilibili.com/479459079?spm_id_from=333.788.upinfo.detail.click)
 
-Cocos Store产品：[Cocos Store](https://store.cocos.com/app/search?name=dgflash)
+Cocos Store Products: [Cocos Store](https://store.cocos.com/app/search?name=dgflash)
 
-## 社群链接
+## Community
 
-- 798575969（1群 - 满） 
-- 621415300（2群 - 满）
-- 628575875（3群 - 满）
-- 226524184（4群 - 满）
-- 741197640（5群 - 满）
-- 438995424（6群 - 满）
-- 916492808（7群 - 满）
-- 973884097（8群 - 推荐）
+- 798575969 (Group 1 - Full)
+- 621415300 (Group 2 - Full)
+- 628575875 (Group 3 - Full)
+- 226524184 (Group 4 - Full)
+- 741197640 (Group 5 - Full)
+- 438995424 (Group 6 - Full)
+- 916492808 (Group 7 - Full)
+- 973884097 (Group 8 - Recommended)
 
-## QQ频道：q366856bf5
+## QQ Channel: q366856bf5
 
-> 欢迎大家交流、推广，在此感谢！
+> Welcome everyone to share and spread the word. Thank you!
