@@ -12,7 +12,7 @@ import { Role } from "../Role";
 
 const { ccclass, property } = _decorator;
 
-/** 角色资源加载 */
+/** Character resource loading */
 @ccclass('RoleViewLoader')
 export class RoleViewLoader extends Component {
     spine: sp.Skeleton = null!;

@@ -8,7 +8,7 @@ import { AnimatorStateLogic } from "../../../../../../extensions/oops-plugin-fra
 import { Role } from "../../Role";
 import { AnimationEventHandler } from "./AnimationEventHandler";
 
-/** 受击状态逻辑 */
+/** Hit status logic */
 export class RoleStateDead extends AnimatorStateLogic {
     private role: Role;
     private anim: AnimationEventHandler;

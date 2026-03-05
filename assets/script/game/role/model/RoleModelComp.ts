@@ -11,23 +11,23 @@ import { RoleNumericMap } from "./attribute/RoleNumericMap";
 import { RoleAttributeType } from "./RoleEnum";
 
 /** 
- * 角色属性数据 
+ * Role attribute data 
  * 
- * 实现功能
- * 1、角色唯一基础数据
- * 2、角色战斗属性数据
- * 3、角色VM组件绑定数据
+ * Implement function
+ * 1. The unique basic data of the character
+ * 2. Character combat attribute data
+ * 3. Role VM component binding data
  * 
- * 技术分析
- * 1、使用ecs.Comp做为数据层的基类，是为了后续业务开发过程中，只要ecs.Entity对象中包含了当前数据组件，就可以通过 ecs.Entity.get(RoleModelComp) 的方式获取对应子模块的数据
+ * technical analysis
+ * 1. Use ecs.Comp as the base class of the data layer so that in the subsequent business development process, as long as the ecs.Entity object contains the current data component, you can obtain the data of the corresponding submodule through ecs.Entity.get(RoleModelComp).
  */
 @ecs.register('RoleModel')
 export class RoleModelComp extends ecs.Comp {
-    /** 角色编号 */
+    /** role number */
     id: number = -1;
 
     private _name: string = "";
-    /** 昵称 */
+    /** Nick name */
     get name(): string {
         return this._name;
     }
@@ -36,10 +36,10 @@ export class RoleModelComp extends ecs.Comp {
         this.vm.name = value;
     }
 
-    /** 动画名资源 */
+    /** Animation name resources */
     anim: string = "model1";
 
-    /** 角色属性 */
+    /** Role attributes */
     attributes: RoleNumericMap = null!;
 
     constructor() {
@@ -47,7 +47,7 @@ export class RoleModelComp extends ecs.Comp {
         this.attributes = new RoleNumericMap(this.vm);
     }
 
-    /** 提供 VM 组件使用的数据 */
+    /** Provides data used by VM components */
     private vm: any = {};
 
     vmAdd() {
@@ -70,7 +70,7 @@ export class RoleModelComp extends ecs.Comp {
     }
 
     toString() {
-        console.log(`【${this.name}】的属性"--------------------------------------------`);
+        console.log(`[${this.name}] attributes"--------------------------------------------`);
         this.attributes.forEach((value: RoleNumeric, key: RoleAttributeType) => {
             console.log(key, value.value);
         });

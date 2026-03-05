@@ -9,27 +9,31 @@ export class TablePromptWindow {
     init(id: number, id1: number, id2: number) {
         var table = JsonUtil.get(TablePromptWindow.TableName);
         this.data = table[id][id1][id2];
-        this.id = id;        this.id1 = id1;        this.id2 = id2;
+        this.id = id;
+        this.id1 = id1;
+        this.id2 = id2;
     }
 
-    /** 编号【KEY】 */
-    id: number = 0;    /** 双主键【KEY】 */
-    id1: number = 0;    /** 双主键【KEY】 */
+    /** Number【key】 */
+    id: number = 0;
+    /** Double primary key [key] */
+    id1: number = 0;
+    /** Double primary key [key] */
     id2: number = 0;
 
-    /** 标题 */
+    /** title */
     get title(): string {
         return this.data.title;
     }
-    /** 描述 */
+    /** describe */
     get describe(): string {
         return this.data.describe;
     }
-    /** 描述 */
+    /** describe */
     get array(): any {
         return this.data.array;
     }
-    /** 生命 */
+    /** life */
     get hp(): number {
         return this.data.hp;
     }

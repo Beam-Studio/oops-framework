@@ -3,17 +3,17 @@
 </div>
 
 <div align="center" >
-<a href="https://gitee.com/dgflash/oops-plugin-framework/blob/master/LICENSE" target="_blank">
+<a href="https://github.com/Beam-Studio/oops-plugin-framework/blob/master/LICENSE" target="_blank">
     <img src="https://img.shields.io/badge/Licence-MIT-green.svg?style=flat" height="22"/>
 </a>
-<a href="https://gitee.com/dgflash/oops-framework/wikis/pages?sort_id=12101082&doc_id=2873565" target="_blank">
+<a href="https://github.com/Beam-Studio/oops-framework/wikis/pages?sort_id=12101082&doc_id=2873565" target="_blank">
     <img src="https://img.shields.io/badge/Version-2.0.0-blue.svg?style=flat" height="22"/>
 </a>
-<a href="https://gitee.com/dgflash/oops-framework/wikis/pages?sort_id=12002367&doc_id=2873565" target="_blank">
+<a href="https://github.com/Beam-Studio/oops-framework/wikis/pages?sort_id=12002367&doc_id=2873565" target="_blank">
     <img src="https://img.shields.io/badge/Document-Guide-red.svg?style=flat" height="22"/>
 </a>
-<a href='https://gitee.com/dgflash/oops-framework/stargazers' target="_blank">
-   <img src='https://gitee.com/dgflash/oops-framework/badge/star.svg?theme=dark' alt='star' height="22" />
+<a href='https://github.com/Beam-Studio/oops-framework/stargazers' target="_blank">
+   <img src='https://github.com/Beam-Studio/oops-framework/badge/star.svg?theme=dark' alt='star' height="22" />
 </div>
 
 ## Overview
@@ -27,7 +27,7 @@ oops Framework is dedicated to providing a framework with commonly used game dev
 ## Features
 
 - Provides comprehensive commonly used game development technologies
-- Provides <a href="https://gitee.com/dgflash/oops-framework/wikis/pages?sort_id=17097283&doc_id=2873565" target="_blank">plugin tools</a> that improve development efficiency
+- Provides <a href="https://github.com/Beam-Studio/oops-framework/wikis/pages?sort_id=17097283&doc_id=2873565" target="_blank">plugin tools</a> that improve development efficiency
 - Provides tutorial projects and solution projects of various types
 - Stable and reliable framework technology
 - Extremely beginner-friendly, simple to operate and easy to get started
@@ -40,13 +40,13 @@ oops Framework is dedicated to providing a framework with commonly used game dev
 - <a href="https://mp.weixin.qq.com/s/MzP-6P6uiddm3ckrISvmkg" target="_blank">Cocos Creator 3.x Outstanding Open-Source Frameworks</a>
 - <a href="https://www.bilibili.com/video/BV1B9pFejEko/?vd_source=2ecab277f9fb79c5e11c909bf0affd34" target="_blank">Cocos Creator 3.x Outstanding Open-Source Framework Roundup</a>
 
-## [Framework Showcase](https://gitee.com/dgflash/oops-framework/wikis/%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B)
+## [Framework Showcase](https://github.com/Beam-Studio/oops-framework/wikis/%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B)
 
-## <a href="https://gitee.com/dgflash/oops-framework/wikis/pages?sort_id=12101082&doc_id=2873565" target="_blank">Changelog</a>
+## <a href="https://github.com/Beam-Studio/oops-framework/wikis/pages?sort_id=12101082&doc_id=2873565" target="_blank">Changelog</a>
 
 ## Learning Resources
 
-Oops Framework Documentation: [WIKI](https://gitee.com/dgflash/oops-framework/wikis/pages?sort_id=12002375&doc_id=2873565)
+Oops Framework Documentation: [WIKI](https://github.com/Beam-Studio/oops-framework/wikis/pages?sort_id=12002375&doc_id=2873565)
 
 Oops Framework API Documentation: [API](https://oops-1255342636.cos.ap-shanghai.myqcloud.com/doc/oops-framework/index.html)
 

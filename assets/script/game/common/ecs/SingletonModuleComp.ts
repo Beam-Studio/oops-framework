@@ -9,12 +9,12 @@ import { ecs } from "../../../../../extensions/oops-plugin-framework/assets/libs
 import { Account } from "../../account/Account";
 import { Initialize } from "../../initialize/Initialize";
 
-/** 游戏模块 */
+/** game module */
 @ecs.register('SingletonModule')
 export class SingletonModuleComp extends ecs.Comp {
-    /** 游戏初始化模块 */
+    /** Game initialization module */
     initialize: Initialize = null!;
-    /** 游戏账号模块 */
+    /** Game account module */
     get account(): Account {
         return this.initialize.account;
     }

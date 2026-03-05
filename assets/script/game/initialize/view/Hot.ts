@@ -1,26 +1,26 @@
 import { error, log, native, sys } from "cc";
 import { oops } from "../../../../../extensions/oops-plugin-framework/assets/core/Oops";
 
-/** 热更参数 */
+/** Hot update parameters */
 export class HotOptions {
-    /** 获取到版本号信息 */
+    /** Get version number information */
     onVersionInfo: Function | null = null;
-    /** 发现新版本，请更新 */
+    /** New version found, please update */
     onNeedToUpdate: Function | null = null;
-    /** 和远程版本一致，无须更新 */
+    /** Same as the remote version, no need to update */
     onNoNeedToUpdate: Function | null = null;
-    /** 更新失败 */
+    /** Update failed */
     onUpdateFailed: Function | null = null;
-    /** 更新完成 */
+    /** Update completed */
     onUpdateSucceed: Function | null = null;
-    /** 更新进度 */
+    /** update progress */
     onUpdateProgress: Function | null = null;
 
     check() {
         for (let key in this) {
             if (key !== 'check') {
                 if (!this[key]) {
-                    log(`参数HotOptions.${key}未设置！`);
+                    log(`The parameter hot options.${key} is not set!`);
                     return false;
                 }
             }
@@ -29,7 +29,7 @@ export class HotOptions {
     }
 }
 
-/** 热更管理 */
+/** Hot update management */
 export class Hot {
     private assetsMgr: native.AssetsManager = null!;
     private options: HotOptions | null = null;
@@ -43,7 +43,7 @@ export class Hot {
         Update: 2,
     }
 
-    /** 热更初始化 */
+    /** Hot update initialization */
     init(opt: HotOptions) {
         if (!sys.isNative) {
             return;
@@ -59,7 +59,7 @@ export class Hot {
 
         oops.res.load('project', (err: Error | null, res: any) => {
             if (err) {
-                error("【热更新界面】缺少热更新配置文件");
+                error("[Hot Update Interface] Missing hot update configuration file");
                 return;
             }
 
@@ -68,7 +68,7 @@ export class Hot {
             this.manifest = res.nativeUrl;
             this.storagePath = `${native.fileUtils.getWritablePath()}oops_framework_remote`;
             this.assetsMgr = new native.AssetsManager(this.manifest, this.storagePath, (versionA, versionB) => {
-                console.log("【热更新】客户端版本: " + versionA + ', 当前最新版本: ' + versionB);
+                console.log("[Hot update] Client version: " + version + ', current latest version: ' + version);
                 this.options?.onVersionInfo && this.options.onVersionInfo({ local: versionA, server: versionB });
 
                 let vA = versionA.split('.');
@@ -89,62 +89,61 @@ export class Hot {
                 }
             });
 
-            // 设置验证回调，如果验证通过，则返回true，否则返回false
+            // Set the verification callback, if the verification passes, return true, otherwise return false
             this.assetsMgr.setVerifyCallback((path: string, asset: jsb.ManifestAsset) => {
-                // 压缩资源时，我们不需要检查其md5，因为zip文件已被删除
+                // When compressing a resource we don't need to check its md5 because the zip file has been deleted
                 var compressed = asset.compressed;
-                // 检索正确的md5值
+                // Retrieve the correct md5 value
                 var expectedMD5 = asset.md5;
-                // 资源路径是相对路径，路径是绝对路径
+                // The resource path is a relative path and the path is an absolute path.
                 var relativePath = asset.path;
-                // 资源文件的大小，但此值可能不存在
+                // The size of the resource file, but this value may not exist
                 var size = asset.size;
 
                 return true;
             });
 
             var localManifest = this.assetsMgr.getLocalManifest();
-            console.log('【热更新】热更资源存放路径: ' + this.storagePath);
-            console.log('【热更新】本地资源配置路径: ' + this.manifest);
-            console.log('【热更新】本地包地址: ' + localManifest.getPackageUrl());
-            console.log('【热更新】远程 project.manifest 地址: ' + localManifest.getManifestFileUrl());
-            console.log('【热更新】远程 version.manifest 地址: ' + localManifest.getVersionFileUrl());
-
+            console.log('[Hot update] Hot update resource storage path: ' + this.storagePath);
+            console.log('[Hot Update] Local resource configuration path: ' + this.manifest);
+            console.log('[Hot Update] Local package address: ' + localManifest.getPackageUrl());
+            console.log('[Hot Update] Remote project.manifest address: ' + localManifest.getManifestFileUrl());
+            console.log('[Hot Update] Remote version.manifest address: ' + localManifest.getVersionFileUrl());
             this.checkUpdate();
         });
     }
 
-    /** 删除热更所有存储文件 */
+    /** Delete all stored files of hot updates */
     clearHotUpdateStorage() {
         native.fileUtils.removeDirectory(this.storagePath);
     }
 
-    // 检查更新
+    // Check for updates
     checkUpdate() {
         if (!this.assetsMgr) {
-            console.log('【热更新】请先初始化')
+            console.log('[Hot update] Please initialize first');
             return;
         }
 
         if (this.assetsMgr.getState() === jsb.AssetsManager.State.UNINITED) {
-            error('【热更新】未初始化')
+            error('[Hot update] Not initialized');
             return;
         }
         if (!this.assetsMgr.getLocalManifest().isLoaded()) {
-            console.log('【热更新】加载本地 manifest 失败 ...');
+            console.log('[Hot update] Failed to load local manifest ...');
             return;
         }
         this.assetsMgr.setEventCallback(this.onHotUpdateCallBack.bind(this));
         this.state = Hot.State.Check;
-        // 下载version.manifest，进行版本比对
+        // Download version.manifest and compare versions
         this.assetsMgr.checkUpdate();
     }
 
-    /** 开始更热 */
+    /** start getting hotter */
     hotUpdate() {
         if (!this.assetsMgr) {
-            console.log('【热更新】请先初始化')
-            return
+            console.log('[Hot update] Please initialize first');
+            return;
         }
         this.assetsMgr.setEventCallback(this.onHotUpdateCallBack.bind(this));
         this.state = Hot.State.Update;
@@ -155,15 +154,15 @@ export class Hot {
         let code = event.getEventCode();
         switch (code) {
             case native.EventAssetsManager.ALREADY_UP_TO_DATE:
-                console.log("【热更新】当前版本与远程版本一致且无须更新");
+                console.log("[Hot update] Current version is up-to-date with the remote version");
                 this.options?.onNoNeedToUpdate && this.options.onNoNeedToUpdate(code)
                 break;
             case native.EventAssetsManager.NEW_VERSION_FOUND:
-                console.log('【热更新】发现新版本,请更新');
+                console.log('[Hot update] New version found, please update');
                 this.options?.onNeedToUpdate && this.options.onNeedToUpdate(code, this.assetsMgr!.getTotalBytes());
                 break;
             case native.EventAssetsManager.ASSET_UPDATED:
-                console.log('【热更新】资产更新');
+                console.log('[Hot update] Asset updated');
                 break;
             case native.EventAssetsManager.UPDATE_PROGRESSION:
                 if (this.state === Hot.State.Update) {
@@ -171,7 +170,7 @@ export class Hot {
                     // event.getPercentByFile();
                     // event.getDownloadedFiles() + ' / ' + event.getTotalFiles();
                     // event.getDownloadedBytes() + ' / ' + event.getTotalBytes();
-                    console.log('【热更新】更新中...', event.getDownloadedFiles(), event.getTotalFiles(), event.getPercent());
+                    console.log('[Hot update] Updating...', event.getDownloadedFiles(), event.getTotalFiles(), event.getPercent());
                     this.options?.onUpdateProgress && this.options.onUpdateProgress(event);
                 }
                 break;
@@ -197,12 +196,12 @@ export class Hot {
         localStorage.setItem('HotUpdateSearchPaths', JSON.stringify(searchPaths));
         native.fileUtils.setSearchPaths(searchPaths);
 
-        console.log('【热更新】更新成功');
+        console.log('[Hot update] Update successful');
         this.options?.onUpdateSucceed && this.options.onUpdateSucceed();
     }
 
     private showSearchPath() {
-        console.log("========================搜索路径========================");
+        console.log("========================Search Paths========================");
         let searchPaths = native.fileUtils.getSearchPaths();
         for (let i = 0; i < searchPaths.length; i++) {
             console.log("[" + i + "]: " + searchPaths[i]);

@@ -10,11 +10,11 @@ import { RoleModelLevelComp } from "../model/RoleModelLevelComp";
 import { Role } from "../Role";
 
 /**
- * 角色升级
+ * Character upgrade
  */
 @ecs.register('RoleUpgrade')
 export class RoleUpgradeComp extends ecs.Comp {
-    /** 当前等级 */
+    /** current level */
     lv: number = 0;
 
     reset() {
@@ -34,16 +34,16 @@ export class RoleUpgradeSystem extends ecs.ComblockSystem implements ecs.IEntity
         let ru = e.RoleUpgrade;
 
         if (ru.lv == 0)
-            rlm.vm.lv++;                   // 提升一级
+            rlm.vm.lv++;                   // Promote one level
         else
-            rlm.vm.lv = ru.lv;             // 设置等级
+            rlm.vm.lv = ru.lv;             // Set level
 
-        // 当前等级配置
+        // Current level configuration
         rlm.rtluCurrent.init(rlm.vm.lv);
-        // 等级附加属性
+        // Level additional attributes
         rm.attributes.get(RoleAttributeType.hp).level = rlm.rtluCurrent.hp;
 
-        // 下个等级配置
+        // Next level configuration
         rlm.rtluNext.init(rlm.vm.lv + 1);
         rlm.vm.expNext = rlm.rtluNext.needexp;
 

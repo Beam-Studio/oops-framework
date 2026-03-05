@@ -12,10 +12,10 @@ import { AccountNetDataComp, AccountNetDataSystem } from "./bll/AccountNetData";
 import { AccountModelComp } from "./model/AccountModelComp";
 
 /**
- * 账号模块
- * 1、连接游戏服务器
- * 2、登录玩家帐号，获取玩家信息
- * 3、断线重连接
+ * Account module
+ * 1. Connect to the game server
+ * 2. Log in to the player account and obtain player information
+ * 3. Disconnect and reconnect
  */
 @ecs.register('Account')
 export class Account extends ecs.Entity {
@@ -32,12 +32,12 @@ export class Account extends ecs.Entity {
         super.destroy();
     }
 
-    /** 添加全局消息事件 */
+    /** Add global message event */
     private addEvent() {
         oops.message.on(GameEvent.GameServerConnected, this.onHandler, this);
     }
 
-    /** 移除全局消息事件 */
+    /** Remove global message event */
     private removeEvent() {
         oops.message.off(GameEvent.GameServerConnected, this.onHandler, this);
     }
@@ -50,16 +50,16 @@ export class Account extends ecs.Entity {
         }
     }
 
-    /** 连接游戏服务器 */
+    /** Connect to game server */
     connect() {
         // netChannel.gameCreate();
         // netChannel.gameConnect();
 
-        // 无网状态下测试代码，有网络时会通过触发网络连接成功事件对接后续流程
+        // Test the code when there is no network. When there is a network, the subsequent process will be connected by triggering the network connection success event.
         oops.message.dispatchEvent(GameEvent.GameServerConnected)
     }
 
-    /** 获取玩家信息 */
+    /** Get player information */
     getPlayer() {
         this.add(AccountNetDataComp);
     }

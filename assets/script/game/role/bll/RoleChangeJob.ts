@@ -12,20 +12,20 @@ import { Role } from "../Role";
 import { RoleEvent } from "../RoleEvent";
 
 /**
- * 角色转职
+ * Role transfer
  * 
- * 实现功能
- * 1、修改角色职业子模块的职业数据
- * 2、自动通过战斗属性框架更新角色战斗属性多模块的叠加值
- * 3、切换角色动画的职业武器
+ * Implement function
+ * 1. Modify the career data of the character career sub-module
+ * 2. Automatically update the superposition value of the character's combat attribute multi-module through the combat attribute framework.
+ * 3. Switch professional weapons for character animations
  * 
- * 技术分析
- * 1、使用ecs.Comp做为业务输入参数的接口，可理解为一个对象成员方法接收了方法参数，通过ecs框架的特点，ecs.System 系统会监控自己关注的数据组件变化后，做对应的业务处理
- * 2、在角色实体上添加职业切换组件时触发业务逻辑的处理，完成后从角色实体上移除业务组件完成业务的生命周期。
+ * technical analysis
+ * 1. Using ecs.Comp as the interface for business input parameters can be understood as an object member method receiving method parameters. Through the characteristics of the ecs framework, the ecs.System system will monitor changes in the data components it is concerned about and perform corresponding business processing.
+ * 2. When adding the career switching component to the role entity, the business logic processing is triggered. After completion, the business component is removed from the role entity to complete the business life cycle.
  */
 @ecs.register('RoleChangeJob')
 export class RoleChangeJobComp extends ecs.Comp {
-    /** 职业编号 */
+    /** Occupation number */
     jobId: number = -1;
 
     reset() {
@@ -40,10 +40,10 @@ export class RoleChangeJobSystem extends ecs.ComblockSystem implements ecs.IEnti
     }
 
     entityEnter(e: Role): void {
-        // 数值更新
+        // Value update
         e.RoleModelJob.id = e.RoleChangeJob.jobId;
 
-        // 转职事件，通知视图层逻辑刷新界面效果，实现两层逻辑分离
+        // Job transfer event notifies the view layer logic to refresh the interface effect, realizing the separation of the two layers of logic
         oops.message.dispatchEvent(RoleEvent.ChangeJob);
 
         e.remove(RoleChangeJobComp);

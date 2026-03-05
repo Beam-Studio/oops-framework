@@ -21,33 +21,33 @@ import { RoleViewComp } from "./view/RoleViewComp";
 import { RoleViewInfoComp } from "./view/RoleViewInfoComp";
 
 /** 
- * 角色实体 
- * 需求
- * 1、角色基础属性的数据结构（唯一标识、名字、等级、经验、角色属性等）
- * 2、角色基础属性信息（力量、敏捷、生命等）
- * 3、角色职业信息（职业名、职业属性附加属性）
- * 4、角色需要有一个动画模型
+ * role entity 
+ * demand
+ * 1. Data structure of character’s basic attributes (unique identifier, name, level, experience, character attributes, etc.)
+ * 2. Character’s basic attribute information (strength, agility, life, etc.)
+ * 3. Character occupation information (occupation name, additional attributes of occupation)
+ * 4. The character needs to have an animation model
  * 5、与玩家互动的玩法（升级、转职、攻击等）
  */
 @ecs.register('Role')
 export class Role extends CCEntity {
-    // 数据层
+    // data layer
     RoleModel!: RoleModelComp;
-    RoleModelBase!: RoleModelBaseComp;          // 角色初始资质
+    RoleModelBase!: RoleModelBaseComp;          // Initial qualifications for the role
     RoleModelJob!: RoleModelJobComp;
     RoleModelLevel!: RoleModelLevelComp;
 
-    // 业务层
-    RoleChangeJob!: RoleChangeJobComp;          // 转职
-    RoleUpgrade!: RoleUpgradeComp;              // 升级
-    RoleMoveTo!: MoveToComp;                    // 移动
+    // business layer
+    RoleChangeJob!: RoleChangeJobComp;          // Change job
+    RoleUpgrade!: RoleUpgradeComp;              // Upgrade
+    RoleMoveTo!: MoveToComp;                    // Move
 
-    // 视图层
-    RoleView!: RoleViewComp;                    // 动画
-    RoleViewInfo!: RoleViewInfoComp;            // 属性界面
+    // view layer
+    RoleView!: RoleViewComp;                    // Animation
+    RoleViewInfo!: RoleViewInfoComp;            // Property interface
 
     protected init() {
-        // 初始化实体常住 ECS 组件，定义实体特性
+        // Initialize entity resident ECS components and define entity properties
         this.addComponents<ecs.Comp>(
             RoleModelComp,
             RoleModelBaseComp,
@@ -55,19 +55,19 @@ export class Role extends CCEntity {
             RoleModelLevelComp);
     }
 
-    /** 转职（ECS System处理逻辑，分享功能独立的业务代码） */
+    /** Job transfer (ECS System processes logic and shares functionally independent business code) */
     changeJob(jobId: number) {
         var rcj = this.add(RoleChangeJobComp);
         rcj.jobId = jobId;
     }
 
-    /** 角色升级（升级只修改数据，通过MVVM级件自动绑定等级变化后的界面角色生命属性刷新） */
+    /** Character upgrade (upgrade only modifies data, automatically binds the interface character life attribute refresh after level change through mvvm levelware) */
     upgrade(lv: number = 0) {
         var ru = this.add(RoleUpgradeComp);
         ru.lv = lv;
     }
 
-    /** 移动（ECS System处理逻辑，分享功能独立的业务代码）  */
+    /** Mobile (ECS System processing logic, sharing functionally independent business code)  */
     move(target: Vec3) {
         var move = this.get(MoveToComp) || this.add(MoveToComp);
         move.target = target;
@@ -76,12 +76,12 @@ export class Role extends CCEntity {
     }
 
     destroy(): void {
-        // 如果该组件对象是由ecs系统外部创建的，则不可回收，需要用户自己手动进行回收。
+        // If the component object is created outside the ecs system, it cannot be recycled and the user needs to manually recycle it.
         this.remove(RoleViewComp);
         super.destroy();
     }
 
-    /** 加载角色显示对象（cc.Component在创建后，添加到ECS框架中，使实体上任何一个ECS组件都可以通过 ECS API 获取到视图层对象 */
+    /** Load the role display object (cc.Component is added to the ECS framework after creation, so that any ECS component on the entity can obtain the view layer object through the ECS API */
     load(parent: Node, pos: Vec3 = Vec3.ZERO) {
         var node = ViewUtil.createPrefabNode("game/battle/role");
         var mv = node.getComponent(RoleViewComp)!;
@@ -91,7 +91,7 @@ export class Role extends CCEntity {
         node.setPosition(pos);
     }
 
-    /** 攻击（DEMO没有战斗逻辑，所以只播放一个动画） */
+    /** Attack (the demo has no combat logic, so only one animation is played) */
     attack() {
         this.RoleView.animator.setTrigger(RoleAnimatorType.Attack);
     }

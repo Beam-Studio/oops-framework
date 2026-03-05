@@ -11,13 +11,13 @@ import { ecs } from "../../../../../extensions/oops-plugin-framework/assets/libs
 import { Role } from "../../role/Role";
 
 /** 
- * 游戏帐号数据 
+ * Game account data 
  */
 @ecs.register('AccountModel')
 export class AccountModelComp extends ecs.Comp {
-    /** 资源列表 */
+    /** Resource list */
     currency: any = {};
-    /** 角色对象 */
+    /** role object */
     role: Role = null!;
 
     reset() {

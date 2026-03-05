@@ -9,27 +9,27 @@ import { Timer } from "../../../../../../extensions/oops-plugin-framework/assets
 import { Vec3Util } from "../../../../../../extensions/oops-plugin-framework/assets/core/utils/Vec3Util";
 import { ecs } from "../../../../../../extensions/oops-plugin-framework/assets/libs/ecs/ECS";
 
-/** 向目标移动，移动过程中目标位置变化会自动修正移动目标点，直到未修正前移动到目标点停止 */
+/** Move towards the target. During the movement, the target position changes and the moving target point will be automatically corrected. The movement will stop at the target point before correction. */
 @ecs.register('MoveTo')
 export class MoveToComp extends ecs.Comp {
-    /** 移动节点 */
+    /** mobile node */
     node: Node = null!;
-    /** 移动方向 */
+    /** moving direction */
     velocity: Vec3 = Vec3Util.zero;
-    /** 移动速度（每秒移动的像素距离） */
+    /** Movement speed (pixel distance moved per second) */
     speed: number = 0;
-    /** 目标实体ECS编号、目标位置 */
+    /** Target entity ecs number, target location */
     target: Vec3 | Node | null = null;
 
-    /** 坐标标（默认本地坐标） */
+    /** Coordinates (default local coordinates) */
     ns: number = Node.NodeSpace.LOCAL;
-    /** 偏移距离 */
+    /** offset distance */
     offset: number = 0;
-    /** 偏移向量 */
+    /** offset vector */
     offsetVector: Vec3 | null = null;
-    /** 移动完成回调 */
+    /** Move complete callback */
     onComplete: Function | null = null;
-    /** 距离变化时 */
+    /** When distance changes */
     onChange: Function | null = null;
 
     reset() {
@@ -44,11 +44,11 @@ export class MoveToComp extends ecs.Comp {
 
 @ecs.register('VariableMoveTo')
 class VariableMoveToComponent extends ecs.Comp {
-    /** 延时触发器 */
+    /** delayed trigger */
     timer: Timer = new Timer();
-    /** 终点备份 */
+    /** End point backup */
     end: Vec3 | null = null;
-    /** 目标位置 */
+    /** Target location */
     target!: Vec3;
 
     reset() {
@@ -57,7 +57,7 @@ class VariableMoveToComponent extends ecs.Comp {
     }
 }
 
-/** 跟踪移动到目标位置 */
+/** Track movement to target location */
 export class MoveToSystem extends ecs.ComblockSystem<ecs.Entity> implements ecs.IEntityEnterSystem, ecs.IEntityRemoveSystem, ecs.ISystemUpdate {
     filter(): ecs.IMatcher {
         return ecs.allOf(MoveToComp);
@@ -76,7 +76,7 @@ export class MoveToSystem extends ecs.ComblockSystem<ecs.Entity> implements ecs.
         let mtv = e.get(VariableMoveToComponent);
         let end: Vec3;
 
-        console.assert(move.speed > 0, "移动速度必须要大于零");
+        console.assert(move.speed > 0, "Movement speed must be greater than zero");
 
         if (move.target instanceof Node) {
             end = move.ns == Node.NodeSpace.WORLD ? move.target.worldPosition : move.target.position;
@@ -85,18 +85,18 @@ export class MoveToSystem extends ecs.ComblockSystem<ecs.Entity> implements ecs.
             end = move.target as Vec3;
         }
 
-        // 目标移动后，重计算移动方向与移动到目标点的速度
+        // After the target moves, recalculate the moving direction and the speed of moving to the target point.
         if (mtv.end == null || !mtv.end.strictEquals(end)) {
             let target = end.clone();
             if (move.offsetVector) {
-                target = target.add(move.offsetVector);           // 这里的问题
+                target = target.add(move.offsetVector);           // The problem here
             }
 
-            // 移动方向与移动数度
+            // Movement direction and movement degree
             let start = move.ns == Node.NodeSpace.WORLD ? move.node.worldPosition : move.node.position;
             move.velocity = Vec3Util.sub(target, start).normalize();
 
-            // 移动时间与目标偏位置计算
+            // Movement time and target offset position calculation
             let distance = Vec3.distance(start, target) - move.offset;
 
             move.onChange?.call(this);
@@ -116,7 +116,7 @@ export class MoveToSystem extends ecs.ComblockSystem<ecs.Entity> implements ecs.
             move.node.translate(trans, Node.NodeSpace.LOCAL);
         }
 
-        // 移动完成事件
+        // move completion event
         if (mtv.timer.update(this.dt)) {
             if (move.ns == Node.NodeSpace.WORLD)
                 move.node.worldPosition = mtv.target;

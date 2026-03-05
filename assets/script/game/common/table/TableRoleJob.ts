@@ -12,22 +12,22 @@ export class TableRoleJob {
         this.id = id;
     }
 
-    /** 编号【KEY】 */
+    /** Number【key】 */
     id: number = 0;
 
-    /** 职业名 */
+    /** Occupational name */
     get armsName(): string {
         return this.data.armsName;
     }
-    /** 武器类型 */
+    /** Weapon type */
     get weaponType(): any {
         return this.data.weaponType;
     }
-    /** 力量 */
+    /** strength */
     get power(): number {
         return this.data.power;
     }
-    /** 敏捷 */
+    /** agile */
     get agile(): number {
         return this.data.agile;
     }

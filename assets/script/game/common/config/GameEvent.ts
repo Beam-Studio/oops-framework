@@ -5,10 +5,10 @@
  * @LastEditTime: 2022-01-26 16:42:00
  */
 
-/** 游戏事件 */
+/** Game events */
 export enum GameEvent {
-    /** 游戏服务器连接成功 */
+    /** Game server connection successful */
     GameServerConnected = "GameServerConnected",
-    /** 登陆成功 */
+    /** Login successful */
     LoginSuccess = "LoginSuccess"
 }

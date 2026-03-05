@@ -8,47 +8,47 @@
 import { RoleAttributeType } from "../RoleEnum";
 import { RoleNumericMap } from "./RoleNumericMap";
 
-/** 影响角色属性的模块 */
+/** Modules that affect character attributes */
 export enum RoleModuleType {
-    /** 初始默认属性 */
+    /** initial default properties */
     Base,
-    /** 职业附加属性 */
+    /** Career additional attributes */
     Job,
-    /** 等级附加属性 */
+    /** Level additional attributes */
     Level,
-    /** 装备附加属性 */
+    /** Equipment additional attributes */
     Equip,
-    /** 修饰器附加属性 */
+    /** Modifier attached properties */
     Decorator,
-    /** 技能附加属性 */
+    /** Skill additional attributes */
     Skill
 }
 
 /** 
- * 角色属性对象
- * 1、不同模块设置对应的属性值
- * 2、任意模块的属性值修改时，自动角色属性更新后的数值和
+ * role attribute object
+ * 1. Different module settings corresponding attribute values
+ * 2. When the attribute value of any module is modified, the automatically updated numerical value of the character attribute and
  */
 export class RoleNumeric {
-    /** 数值更新事件 */
+    /** Numeric update event */
     onUpdate: Function = null!
 
-    /** 属性类型 */
+    /** Property type */
     type: RoleAttributeType = null!;
 
-    /** 各模块附加值求和总数值 */
+    /** The total value of the added value of each module */
     value: number = 0;
 
-    /** 属性值集合 */
+    /** attribute value collection */
     protected attributes: RoleNumericMap;
-    /** 分组不同模块数值 */
+    /** Group different module values */
     protected values: Map<RoleModuleType, number> = new Map();
 
     constructor(type: RoleAttributeType, attributes: RoleNumericMap) {
         this.type = type;
         this.attributes = attributes;
 
-        // 设置初始值
+        // Set initial value
         var rmt = RoleModuleType;
         for (var key in rmt) {
             var k = Number(key);
@@ -56,12 +56,12 @@ export class RoleNumeric {
         }
     }
 
-    /** 获取指定模块属性值 */
+    /** Get the specified module attribute value */
     protected getValue(module: RoleModuleType) {
         return this.values.get(module);
     }
 
-    /** 设置指定模块属性值 */
+    /** Set the specified module attribute value */
     protected setValue(module: RoleModuleType, value: number) {
         this.values.set(module, value);
         this.update();
@@ -82,7 +82,7 @@ export class RoleNumeric {
         this.update();
     }
 
-    /** 角色基础属性 */
+    /** Character basic attributes */
     get base(): number {
         return this.getValue(RoleModuleType.Base)!;
     }
@@ -90,7 +90,7 @@ export class RoleNumeric {
         this.setValue(RoleModuleType.Base, value);
     }
 
-    /** 等级属性 */
+    /** Level attribute */
     get level(): number {
         return this.getValue(RoleModuleType.Level)!;
     }
@@ -98,7 +98,7 @@ export class RoleNumeric {
         this.setValue(RoleModuleType.Level, value);
     }
 
-    /** 角色职业属性 */
+    /** Character professional attributes */
     get job(): number {
         return this.getValue(RoleModuleType.Job)!;
     }
@@ -106,7 +106,7 @@ export class RoleNumeric {
         this.setValue(RoleModuleType.Job, value);
     }
 
-    /** 角色装备属性 */
+    /** Character equipment attributes */
     get equip(): number {
         return this.getValue(RoleModuleType.Equip)!;
     }
@@ -114,7 +114,7 @@ export class RoleNumeric {
         this.setValue(RoleModuleType.Equip, value);
     }
 
-    /** 修饰器属性 */
+    /** Decorator properties */
     get decorator(): number {
         return this.getValue(RoleModuleType.Decorator)!;
     }
@@ -122,7 +122,7 @@ export class RoleNumeric {
         this.setValue(RoleModuleType.Decorator, value);
     }
 
-    /** 技能附加属性 */
+    /** Skill additional attributes */
     get skill(): number {
         return this.getValue(RoleModuleType.Skill)!;
     }

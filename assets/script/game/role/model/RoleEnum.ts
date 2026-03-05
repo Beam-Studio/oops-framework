@@ -5,31 +5,31 @@
  * @LastEditTime: 2022-01-27 15:49:36
  */
 
-/** 角色属性类型 */
+/** Role attribute type */
 export enum RoleAttributeType {
-    /** 力量 */
+    /** strength */
     power = "power",
-    /** 体质 */
+    /** constitution */
     physical = "physical",
-    /** 敏捷 */
+    /** agile */
     agile = "agile",
-    /** 生命最大值 */
+    /** life max */
     hp = "hp"
 }
 
-/** 角色动作名 */
+/** Character action name */
 export enum RoleAnimatorType {
-    /** 待机 */
+    /** standby */
     Idle = "Idle",
-    /** 攻击 */
+    /** attack */
     Attack = "Attack",
-    /** 受击 */
+    /** hit */
     Hurt = "Hurt",
-    /** 死亡 */
+    /** die */
     Dead = "Dead"
 }
 
-/** 武器名 */
+/** Weapon name */
 export var WeaponName: any = {
     0: "Fist",
     1: "Katana",

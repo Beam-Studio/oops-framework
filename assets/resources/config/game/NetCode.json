@@ -1,11 +1,11 @@
 {
     "1": {
-        "describe": "成功"
+        "describe": "success"
     },
     "2": {
-        "describe": "服务器错误"
+        "describe": "Server error"
     },
     "3": {
-        "describe": "数据库错误"
+        "describe": "Database error"
     }
 }

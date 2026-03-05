@@ -8,7 +8,7 @@ goto clone
 )
 
 :clone
-git clone -b master https://gitee.com/dgflash/oops-plugin-hot-update.git
+git clone -b master https://github.com/Beam-Studio/oops-plugin-hot-update.git
 
 :update
 cd oops-plugin-hot-update

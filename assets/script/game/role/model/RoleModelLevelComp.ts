@@ -10,23 +10,23 @@ import { VM } from "../../../../../extensions/oops-plugin-framework/assets/libs/
 import { TableRoleLevelUp } from "../../common/table/TableRoleLevelUp";
 
 /**
- * 角色等级数据
+ * Character level data
  * 
- * 实现功能
- * 1、角色等级变化时、获取升级配置表中的生命附加值叠加到角色属性上
+ * Implement function
+ * 1. When the character level changes, the added life value in the upgrade configuration table is obtained and superimposed on the character attributes.
  * 
- * 技术分析
- * 1、等级模块直接通过数据访问层的API获取到本地等级配置表数据，通过当前等级匹配到配置表中的等级配置数据
- * 2、获取到的等级配置数据中的生命附加值，叠加到角色战斗属性的等级模块附加值上
+ * technical analysis
+ * 1. The level module directly obtains the local level configuration table data through the API of the data access layer, and matches the level configuration data in the configuration table through the current level.
+ * 2. The added value of life in the obtained level configuration data is superimposed on the added value of the level module of the character’s combat attributes.
  */
 @ecs.register('RoleModelLevel')
 export class RoleModelLevelComp extends ecs.Comp {
-    /** 下个等级配置 */
+    /** Next level configuration */
     rtluNext: TableRoleLevelUp = new TableRoleLevelUp();
-    /** 当前等级配置 */
+    /** Current level configuration */
     rtluCurrent: TableRoleLevelUp = new TableRoleLevelUp();
 
-    /** 提供 VM 组件使用的数据 */
+    /** Provides data used by VM components */
     vm: RoleLevelVM = new RoleLevelVM();
 
     vmAdd() {
@@ -44,11 +44,11 @@ export class RoleModelLevelComp extends ecs.Comp {
 }
 
 class RoleLevelVM {
-    /** 当前等级 */
+    /** current level */
     lv: number = 0;
-    /** 当前经验 */
+    /** Current experience */
     exp: number = 0;
-    /** 下级经验 */
+    /** Subordinate experience */
     expNext: number = 0;
 
     reset() {

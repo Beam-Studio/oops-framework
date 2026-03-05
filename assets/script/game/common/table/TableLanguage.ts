@@ -12,14 +12,14 @@ export class TableLanguage {
         this.id = id;
     }
 
-    /** 编号【KEY】 */
+    /** Number【key】 */
     id: number = 0;
 
-    /** 简体中文 */
+    /** Simplified Chinese */
     get zh(): string {
         return this.data.zh;
     }
-    /** 英文 */
+    /** English */
     get en(): string {
         return this.data.en;
     }

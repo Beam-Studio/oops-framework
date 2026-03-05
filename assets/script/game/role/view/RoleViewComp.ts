@@ -16,21 +16,21 @@ import { RoleViewLoader } from "./RoleViewLoader";
 
 const { ccclass, property } = _decorator;
 
-/** 角色显示组件 */
-@ccclass('RoleViewComp')                   // 定义为 Cocos Creator 组件
-@ecs.register('RoleView', false)           // 定义为 ECS 组件
+/** Character display component */
+@ccclass('RoleViewComp')                   // Defined as Cocos Creator component
+@ecs.register('RoleView', false)           // Defined as an ECS component
 export class RoleViewComp extends CCView<Role> {
     @property({ type: sp.Skeleton, tooltip: '角色动画' })
     spine: sp.Skeleton = null!;
 
-    /** 角色动画资源管理 */
+    /** Character animation resource management */
     loader: RoleViewLoader = null!;
-    /** 角色动画规则管理 */
+    /** Character animation rule management */
     animator: RoleViewAnimator = null!;
-    /** 角色控制器 */
+    /** character controller */
     controller: RoleViewController = null!;
 
-    /** 视图层逻辑代码分离演示 */
+    /** View layer logic code separation demonstration */
     onLoad() {
         var role = this.ent as Role;
 
@@ -46,7 +46,7 @@ export class RoleViewComp extends CCView<Role> {
         this.on(RoleEvent.ChangeJob, this.onHandler, this);
     }
 
-    /** 业务层全局消息通知视图层逻辑处理，两层之间逻辑解耦合演示 */
+    /** Global messages in the business layer notify the logical processing of the view layer, and demonstrate the logical decoupling between the two layers. */
     private onHandler(event: string, args: any) {
         switch (event) {
             case RoleEvent.ChangeJob:

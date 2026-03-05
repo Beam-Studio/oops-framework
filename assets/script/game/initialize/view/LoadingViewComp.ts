@@ -16,19 +16,19 @@ import { Initialize } from "../Initialize";
 
 const { ccclass, property } = _decorator;
 
-/** 游戏资源加载 */
+/** Game resource loading */
 @ccclass('LoadingViewComp')
 @ecs.register('LoadingView', false)
 export class LoadingViewComp extends CCViewVM<Initialize> {
-    /** VM 组件绑定数据 */
+    /** VM component binding data */
     data: any = {
-        /** 加载资源当前进度 */
+        /** Current progress of loading resources */
         finished: 0,
-        /** 加载资源最大进度 */
+        /** Maximum progress of loading resources */
         total: 0,
-        /** 加载资源进度比例值 */
+        /** Loading resource progress ratio value */
         progress: "0",
-        /** 加载流程中提示文本 */
+        /** Prompt text during loading process */
         prompt: ""
     };
 
@@ -36,10 +36,10 @@ export class LoadingViewComp extends CCViewVM<Initialize> {
 
     reset(): void {
         setTimeout(() => {
-            // 关闭加载界面
+            // Close loading interface
             oops.gui.remove(UIID.Loading);
 
-            // 打开游戏主界面（自定义逻辑）
+            // Open the game main interface (custom logic)
             oops.gui.open(UIID.Demo);
         }, 500);
     }
@@ -62,22 +62,22 @@ export class LoadingViewComp extends CCViewVM<Initialize> {
     private onHandler(event: string, args: any) {
         switch (event) {
             case GameEvent.LoginSuccess:
-                // 加载流程结束，移除加载提示界面
+                // The loading process ends and the loading prompt interface is removed.
                 this.ent.remove(LoadingViewComp);
                 break;
         }
     }
 
-    /** 加载资源 */
+    /** Load resources */
     private async loadRes() {
         this.data.progress = 0;
         await this.loadCustom();
         this.loadGameRes();
     }
 
-    /** 加载游戏本地JSON数据（自定义内容） */
+    /** Load the game's local json data (custom content) */
     private loadCustom() {
-        // 加载游戏本地JSON数据的多语言提示文本
+        // Load the multi-language prompt text of the game's local json data
         this.data.prompt = oops.language.getLangByID("loading_load_json");
 
         return new Promise(async (resolve, reject) => {
@@ -86,15 +86,15 @@ export class LoadingViewComp extends CCViewVM<Initialize> {
         });
     }
 
-    /** 加载初始游戏内容资源 */
+    /** Load initial game content resources */
     private loadGameRes() {
-        // 加载初始游戏内容资源的多语言提示文本
+        // Multilingual prompt text for loading initial game content assets
         this.data.prompt = oops.language.getLangByID("loading_load_game");
 
         oops.res.loadDir("game", this.onProgressCallback.bind(this), this.onCompleteCallback.bind(this));
     }
 
-    /** 加载进度事件 */
+    /** Loading progress event */
     private onProgressCallback(finished: number, total: number, item: any) {
         this.data.finished = finished;
         this.data.total = total;
@@ -106,12 +106,12 @@ export class LoadingViewComp extends CCViewVM<Initialize> {
         }
     }
 
-    /** 加载完成事件 */
+    /** Load complete event */
     private onCompleteCallback() {
-        // 获取用户信息的多语言提示文本
+        // Get multilingual prompt text for user information
         this.data.prompt = oops.language.getLangByID("loading_load_player");
 
-        // 初始化帐号模块
+        // Initialize account module
         smc.account.connect();
     }
 }

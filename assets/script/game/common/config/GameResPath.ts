@@ -5,14 +5,14 @@
  * @LastEditTime: 2022-08-05 17:05:52
  */
 
-/** 游戏资源路径 */
+/** Game resource path */
 export class GameResPath {
-    /** 游戏配置路径 */
+    /** Game configuration path */
     static getConfigPath(relative_path: string) {
         return "config/game/" + relative_path;
     }
 
-    /** 角色资源路径 */
+    /** Role resource path */
     static getRolePath(name: string) {
         return `content/role/${name}`;
     }

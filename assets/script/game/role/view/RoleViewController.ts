@@ -11,10 +11,10 @@ import { Role } from "../Role";
 
 const { ccclass, property } = _decorator;
 
-/** 角色资源加载 */
+/** Character resource loading */
 @ccclass('RoleViewController')
 export class RoleViewController extends Component {
-    /** 角色对象 */
+    /** role object */
     role: Role = null!;
 
     onLoad() {
@@ -22,7 +22,7 @@ export class RoleViewController extends Component {
     }
 
     private onTouchEnd(event: EventTouch) {
-        // 注：角色移动控制代码在RPG类游戏中，应该设计到地图模块监听触摸事件。因为测试代码只有一个角色，为了简少DEMO代码量，只表达程序设计思想
+        // Note: The character movement control code in RPG games should be designed so that the map module listens for touch events. Because the test code has only one role, in order to simplify and reduce the amount of demo code, it only expresses programming ideas.
         var uit = this.node.parent!.getComponent(UITransform)!;
         var x = event.getUILocation().x - uit.contentSize.width / 2;
         var y = event.getUILocation().y - uit.contentSize.height / 2;

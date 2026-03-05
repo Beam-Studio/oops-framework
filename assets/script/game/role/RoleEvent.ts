@@ -1,5 +1,5 @@
-/** 角色模块全局事件 */
+/** Role module global events */
 export enum RoleEvent {
-    /** 修改职业事件 */
+    /** Modify career events */
     ChangeJob = "ChangeJob"
 }

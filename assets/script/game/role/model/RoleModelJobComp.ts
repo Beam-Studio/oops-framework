@@ -10,17 +10,17 @@ import { RoleAttributeType } from "./RoleEnum";
 import { RoleModelComp } from "./RoleModelComp";
 
 /** 
- * 角色职业数据 
+ * Character career data 
  * 
- * 实现功能
- * 1、影响角色力量、敏捷战斗属性
- * 2、影响角色动画武器
+ * Implement function
+ * 1. Affects the character’s strength and agility combat attributes
+ * 2. Weapons that affect character animation
  */
 @ecs.register('RoleModelJob')
 export class RoleModelJobComp extends ecs.Comp {
     private table: TableRoleJob = new TableRoleJob();
 
-    /** 职业编号编号 */
+    /** Occupational code number */
     private _id: number = -1;
     get id(): number {
         return this._id;
@@ -33,19 +33,19 @@ export class RoleModelJobComp extends ecs.Comp {
         attributes.get(RoleAttributeType.power).job = this.power;
         attributes.get(RoleAttributeType.agile).job = this.agile;
     }
-    /** 职业名 */
+    /** Occupational name */
     get armsName(): string {
         return this.table.armsName;
     }
-    /** 力量 */
+    /** strength */
     get power(): number {
         return this.table.power;
     }
-    /** 敏捷 */
+    /** agile */
     get agile(): number {
         return this.table.agile;
     }
-    /** 武器类型 */
+    /** Weapon type */
     get weaponType(): number[] {
         return this.table.weaponType;
     }

@@ -29,7 +29,7 @@ export class Main extends Root {
     protected run() {
         smc.initialize = ecs.getEntity<Initialize>(Initialize);
         if (JSB) {
-            oops.gui.toast("热更新后新程序的提示");
+            oops.gui.toast("Tips for new programs after hot update");
         }
     }
 

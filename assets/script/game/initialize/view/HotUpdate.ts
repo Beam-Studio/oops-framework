@@ -12,12 +12,12 @@ import { LoadingViewComp } from "./LoadingViewComp";
 
 const { ccclass, property } = _decorator;
 
-/** 热更新界面控制脚本 */
+/** Hot update interface control script */
 @ccclass('HotUpdate')
 export class HotUpdate extends Component {
-    /** 热更新业务管理对象 */
+    /** Hot update business management object */
     private hot = new Hot();
-    /** 公用加载界面UI做更新提示 */
+    /** Update prompt for public loading interface UI */
     private lv: LoadingViewComp = null!;
 
     onLoad() {
@@ -28,33 +28,33 @@ export class HotUpdate extends Component {
         }
     }
 
-    /** 开始热更新 */
+    /** Start hot update */
     private startHotUpdate() {
         let options = new HotOptions();
         options.onVersionInfo = (data: any) => {
-            // console.log(`【热更新界面】本地版本:${data.local},远程版本:${data.server}`);
+            // Console.log(`[Hot update interface] local version: ${data.local}, remote version: ${data.server}`);
         };
         options.onUpdateProgress = (event: jsb.EventAssetsManager) => {
-            // 进度提示字
+            // Progress prompt word
             let pc = event.getPercent();
             let _total = event.getTotalBytes();
             let _have = event.getDownloadedBytes();
 
             let total: string, have: string;
-            if (_total < 1048576) {                              // 小于1m，就显示kb
+            if (_total < 1048576) {                              // If it is less than 1m, it will display kb
                 _total = Math.ceil(_total / 1024)
                 total = _total + 'K'
             }
-            else {                                               // 显示m
+            else {                                               // Show m
                 total = (_total / (1024 * 1024)).toFixed(1);
                 total = total + 'M'
             }
 
-            if (_have < 1048576) {                               // 小于1m，就显示kb
+            if (_have < 1048576) {                               // If it is less than 1m, it will display kb
                 _have = Math.ceil(_have / 1024)
                 have = _have + 'K'
             }
-            else {                                               // 显示m
+            else {                                               // Show m
                 have = (_have / (1024 * 1024)).toFixed(1);
                 have = have + 'M'
             }
@@ -66,7 +66,7 @@ export class HotUpdate extends Component {
                 this.lv.data.prompt = oops.language.getLangByID("update_tips_update") + have + '/' + total + ' (' + parseInt(pc * 100 + "") + '%)';
             }
 
-            // 进度条
+            // progress bar
             if (!isNaN(event.getPercent())) {
                 this.lv.data.finished = event.getDownloadedFiles();
                 this.lv.data.total = event.getTotalFiles();
@@ -76,8 +76,8 @@ export class HotUpdate extends Component {
         options.onNeedToUpdate = (data: any, totalBytes: number) => {
             this.lv.data.prompt = oops.language.getLangByID("update_tips_new_version");
             let total: string = "";
-            if (totalBytes < 1048576) {                                 // 小于1m，就显示kb
-                // totalBytes = Math.ceil(totalBytes / 1024);
+            if (totalBytes < 1048576) {                                 // If it is less than 1m, it will display kb
+                // totalBytes = Math.ceil(totalBytes /1024);
                 // total = total + 'KB';
                 total = Math.ceil(totalBytes / 1024) + 'KB';
             }
@@ -86,9 +86,9 @@ export class HotUpdate extends Component {
                 total = total + 'MB';
             }
 
-            // 提示更新
+            // Prompt update
             this.checkForceUpdate(() => {
-                // 非 WIFI 环境提示玩家
+                // Non-WIFI environment prompts players
                 this.showUpdateDialog(total, () => {
                     this.hot.hotUpdate();
                 })
@@ -113,7 +113,7 @@ export class HotUpdate extends Component {
         this.hot.init(options);
     }
 
-    /** 检查是否强制更新信息 */
+    /** Check whether to force update information */
     private checkForceUpdate(callback: Function) {
         let operate: any = {
             title: 'common_prompt_title_sys',
@@ -132,7 +132,7 @@ export class HotUpdate extends Component {
         oops.gui.open(UIID.Confirm, operate);
     }
 
-    /** 非 WIFI 环境提示玩家 */
+    /** Non-WIFI environment prompts players */
     private showUpdateDialog(size: string, callback: Function) {
         if (sys.getNetworkType() == sys.NetworkType.LAN) {
             callback();

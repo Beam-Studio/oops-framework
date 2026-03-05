@@ -14,7 +14,7 @@ import { Role } from "../Role";
 
 const { ccclass, property } = _decorator;
 
-/** 角色信息界面 */
+/** Role information interface */
 @ccclass('RoleViewInfoComp')
 @ecs.register('RoleViewInfo', false)
 export class RoleViewInfoComp extends CCView<Role> {
@@ -46,6 +46,6 @@ export class RoleViewInfoComp extends CCView<Role> {
     }
 
     protected onDestroy(): void {
-        console.log("释放角色信息界面");
+        console.log("Release the role information interface");
     }
 }

@@ -12,7 +12,7 @@ class FrameEventData {
     public target: any;
 }
 
-/** 模型动作自定义事件逻辑 */
+/** Model action custom event logic */
 export class AnimationEventHandler implements AnimationPlayer {
     private frameEvents: Map<string, FrameEventData> = new Map();
     private finishedEvents: Map<string, FrameEventData> = new Map();

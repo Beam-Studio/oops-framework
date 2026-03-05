@@ -14,7 +14,7 @@ import { RoleViewInfoComp } from "../role/view/RoleViewInfoComp";
 import { UIParam } from "db://oops-framework/core/gui/layer/LayerUIElement";
 
 const { ccclass, property } = _decorator;
-// 视图层实体是空的
+// View layer entity is empty
 @ccclass('Demo')
 export class Demo extends GameComponent {
     private lang: boolean = true;
@@ -25,25 +25,25 @@ export class Demo extends GameComponent {
     start() {
         // resLoader.dump();
 
-        // console.log("当前图集数量", dynamicAtlasManager.atlasCount);
-        // console.log("可以创建的最大图集数量", dynamicAtlasManager.maxAtlasCount);
-        // console.log("创建的图集的宽高", dynamicAtlasManager.textureSize);
-        // console.log("可以添加进图集的图片的最大尺寸", dynamicAtlasManager.maxFrameSize);
-        // console.log("可以添加进图集的图片的最大尺寸", dynamicAtlasManager.maxFrameSize);
+        // console.log("Current number of atlases", dynamicAtlasManager.atlasCount);
+        // console.log("Maximum number of atlases that can be created", dynamicAtlasManager.maxAtlasCount);
+        // console.log("Width and height of the created atlas", dynamicAtlasManager.textureSize);
+        // console.log("Maximum size of pictures that can be added to the atlas", dynamicAtlasManager.maxFrameSize);
+        // console.log("Maximum size of pictures that can be added to the atlas", dynamicAtlasManager.maxFrameSize);
 
-        // console.log("是否是原生平台", sys.isNative);
-        // console.log("是否是浏览器", sys.isBrowser);
-        // console.log("是否是移动端平台", sys.isMobile);
-        // console.log("是否是小端序", sys.isLittleEndian);
-        // console.log("运行平台或环境", sys.platform);
-        // console.log("运行环境的语言", sys.language);
-        // console.log("运行环境的语言代码", sys.languageCode);
-        // console.log("当前运行系统", sys.os);
-        // console.log("运行系统版本字符串", sys.osVersion);
-        // console.log("当前系统主版本", sys.osMainVersion);
-        // console.log("当前运行的浏览器类型", sys.browserType);
-        // console.log("获取当前设备的网络类型, 如果网络类型无法获取，默认将返回 `sys.NetworkType.LAN`", sys.getNetworkType());
-        // console.log("取当前设备的电池电量，如果电量无法获取，默认将返回 1", sys.getBatteryLevel());
+        // console.log("Is it a native platform", sys.isNative);
+        // console.log("Is it a browser", sys.isBrowser);
+        // console.log("Is it a mobile platform", sys.isMobile);
+        // console.log("Is it little endian", sys.isLittleEndian);
+        // console.log("Running platform or environment", sys.platform);
+        // console.log("Language of running environment", sys.language);
+        // console.log("Language code of running environment", sys.languageCode);
+        // console.log("Current running system", sys.os);
+        // console.log("Running system version string", sys.osVersion);
+        // console.log("Current system main version", sys.osMainVersion);
+        // console.log("Currently running browser type", sys.browserType);
+        // console.log("Get the network type of the current device. If the network type cannot be obtained, `sys.NetworkType.LAN` will be returned by default", sys.getNetworkType());
+        // console.log("Get the battery power of the current device. If the power cannot be obtained, 1 will be returned by default", sys.getBatteryLevel());
 
 
         this.labChange.changeTo(0.5, 250, () => { })
@@ -93,44 +93,44 @@ export class Demo extends GameComponent {
         oops.gui.toast(data, true);
     }
 
-    /** 升级 */
+    /** upgrade */
     private btn_level_up(event: EventTouch, data: any) {
         var role = smc.account.AccountModel.role;
         role.upgrade();
     }
 
-    /** 攻击 */
+    /** attack */
     private btn_attack(event: EventTouch, data: any) {
         var role = smc.account.AccountModel.role;
         role.attack();
     }
 
-    /** 转职弓箭 */
+    /** Class transfer bow and arrow */
     private btn_change_job9(event: EventTouch, data: any) {
         var role = smc.account.AccountModel.role;
         role.changeJob(9);
     }
 
-    /** 转职匕首 */
+    /** Job transfer dagger */
     private btn_change_job5(event: EventTouch, data: any) {
         var role = smc.account.AccountModel.role;
         role.changeJob(5);
     }
 
-    /** 转职刀 */
+    /** Job changing knife */
     private btn_change_job1(event: EventTouch, data: any) {
         var role = smc.account.AccountModel.role;
         role.changeJob(1);
     }
 
-    /** 打开角色界面 */
+    /** Open the role interface */
     private async btn_open_role_info(event: EventTouch, data: any) {
         var role = smc.account.AccountModel.role;
-        var node = await oops.gui.open(UIID.Demo_Role_Info, { data: "传递参数" });
+        var node = await oops.gui.open(UIID.Demo_Role_Info, { data: "Pass parameters" });
         if (node) role.add(node.getComponent(RoleViewInfoComp)!);
     }
 
-    /** 多语言切换 */
+    /** Multi-language switching */
     private btn_language(event: EventTouch, data: any) {
         console.log(oops.language.getLangByID("notify_show"));
 
@@ -144,12 +144,12 @@ export class Demo extends GameComponent {
         }
     }
 
-    /** 漂浮提示框 */
+    /** Floating prompt box */
     private btn_notify_show(event: EventTouch, data: any) {
         oops.gui.toast("common_prompt_content", true);
     }
 
-    /** 加载提示 */
+    /** Loading prompt */
     private netInstableOpen(event: EventTouch, data: any) {
         oops.gui.waitOpen();
         setTimeout(() => {
@@ -157,12 +157,12 @@ export class Demo extends GameComponent {
         }, 2000);
     }
 
-    /** 背景音乐 */
+    /** background music */
     private btn_audio_open1(event: EventTouch, data: any) {
         oops.audio.music.loadAndPlay("audios/nocturne");
     }
 
-    /** 背景音效 */
+    /** background sound effects */
     private btn_audio_open2(event: EventTouch, data: any) {
         oops.audio.playEffect("audios/Gravel");
     }
@@ -170,8 +170,8 @@ export class Demo extends GameComponent {
     private btn_common_prompt() {
         let uip: UIParam = {
             data: {
-                title: "公共弹窗",
-                content: "这是一个公共弹窗",
+                title: "Public pop-up window",
+                content: "This is a public pop-up window",
                 okWord: 'common_prompt_ok',
                 needCancel: false
             }

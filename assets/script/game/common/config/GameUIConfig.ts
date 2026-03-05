@@ -8,21 +8,21 @@ import { LayerType } from "db://oops-framework/core/gui/layer/LayerEnum";
 import { UIConfig } from "db://oops-framework/core/gui/layer/UIConfig";
 
 
-/** 界面唯一标识（方便服务器通过编号数据触发界面打开） */
+/** The unique identifier of the interface (convenient for the server to trigger the opening of the interface through numbered data) */
 export enum UIID {
-    /** 资源加载界面 */
+    /** Resource loading interface */
     Loading = 1,
-    /** 提示弹出窗口 */
+    /** Prompt pop-up window */
     Alert,
-    /** 确认弹出窗口 */
+    /** Confirmation popup */
     Confirm,
-    /** DEMO */
+    /** Demo */
     Demo,
-    /** 角色信息 */
+    /** role information */
     Demo_Role_Info,
 }
 
-/** 打开界面方式的配置数据 */
+/** Open configuration data in interface mode */
 export var UIConfigData: { [key: number]: UIConfig } = {
     [UIID.Loading]: { layer: LayerType.UI, prefab: "loading/prefab/loading", bundle: "resources" },
     [UIID.Alert]: { layer: LayerType.Dialog, prefab: "common/prefab/alert", mask: true },

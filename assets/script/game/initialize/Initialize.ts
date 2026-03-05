@@ -10,21 +10,21 @@ import { Account } from "../account/Account";
 import { InitResComp } from "./bll/InitRes";
 
 /**
- * 游戏进入初始化模块
- * 1、热更新
- * 2、加载默认资源
+ * The game enters the initialization module
+ * 1. Hot update
+ * 2. Load default resources
  */
 @ecs.register('Initialize')
 export class Initialize extends CCEntity {
-    /** 帐号管理 */
+    /** Account management */
     account: Account = null!;
 
     protected init() {
-        // 帐号模块为初始化模块的子实体对象
+        // The account module is the sub-entity object of the initialization module
         this.account = ecs.getEntity<Account>(Account);
         this.addChild(this.account);
 
-        // 初始化游戏公共资源
+        // Initialize game public resources
         this.add(InitResComp);
     }
 }

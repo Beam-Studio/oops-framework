@@ -17,31 +17,31 @@ import { RoleStateHit } from "./animator/RoleStateHit";
 const { ccclass, property, requireComponent, disallowMultiple } = _decorator;
 
 /** 
- * 角色SPINE动画控制
+ * Character SPINE animation control
  * 
- * 实现功能
- * 1、控制动作变化
- * 2、控制武器变化
- * 3、控制脸的朝向
+ * Implement function
+ * 1. Control movement changes
+ * 2. Control weapon changes
+ * 3. Control the direction of your face
  */
 @ccclass("RoleViewAnimator")
 @disallowMultiple
 @requireComponent(sp.Skeleton)
 export class RoleViewAnimator extends AnimatorSpine {
-    /** 攻击行为完成 */
+    /** The attack is completed */
     onAttackComplete: Function = null!;
-    /** 受击动作完成 */
+    /** The attack action is completed */
     onHitActionComplete: Function = null!;
-    /** 角色对象 */
+    /** role object */
     role: Role = null!;
 
-    /** 武器动画名 */
+    /** Weapon animation name */
     private weaponAnimName: string = null!;
 
     start() {
         super.start();
 
-        // 动画状态机
+        // animation state machine
         let anim = new AnimationEventHandler();
         let asl: Map<string, AnimatorStateLogic> = new Map();
         asl.set(RoleAnimatorType.Attack, new RoleStateAttack(this.role, anim));
@@ -50,27 +50,27 @@ export class RoleViewAnimator extends AnimatorSpine {
         this.initArgs(asl, anim);
     }
 
-    /** 面象朝左 */
+    /** Face to the left */
     left() {
         this.node.parent!.setScale(1, 1, 1);
     }
 
-    /** 面象朝右 */
+    /** Face to the right */
     right() {
         this.node.parent!.setScale(-1, 1, 1);
     }
 
-    /** 当前动作换职业动画 */
+    /** Current action changing career animation */
     refresh() {
-        // 状态机状态值未变时，不会触发状态变化事件，所以这里直接触发状态变化事件来触发后续流程
+        // When the state value of the state machine has not changed, the state change event will not be triggered, so the state change event is directly triggered here to trigger the subsequent process.
         this.onStateChange(this._ac.curState, this._ac.curState);
     }
 
     /**
-     * 播放动画
+     * Play animation
      * @override
-     * @param animName 动画名
-     * @param loop 是否循环播放
+     * @param animName Animation name
+     * @param loop Whether to loop
      */
     protected playAnimation(animName: string, loop: boolean) {
         if (animName) {
@@ -83,7 +83,7 @@ export class RoleViewAnimator extends AnimatorSpine {
         }
     }
 
-    /** 武器动画剪辑名 */
+    /** Weapon animation clip name */
     private getWeaponAnimName() {
         var job = this.role.RoleModelJob;
         var weaponAnimName = WeaponName[job.weaponType[0]];
